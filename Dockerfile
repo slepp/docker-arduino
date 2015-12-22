@@ -1,0 +1,26 @@
+FROM alpine:3.2
+MAINTAINER Stephen Olesen <slepp@slepp.ca>
+
+RUN apk --update add openjdk7-jre xvfb curl
+#apt-get update \
+#	&& apt-get install \
+#		openjdk-7-jre \
+#		xvfb \
+#	&& apt-get clean \
+#	&& rm -rf /var/lib/apt/lists/*
+
+WORKDIR /usr/local/share
+RUN curl -SL https://downloads.arduino.cc/arduino-1.6.7-linux64.tar.xz \
+	| tar xJ \
+	&& ln -s arduino-1.6.7 arduino \
+	&& ln -s /usr/local/share/arduino-1.6.7/arduino /usr/local/bin/arduino
+
+COPY ./start-xvfb.sh /usr/local/bin/start-xvfb
+
+ENV DISPLAY :1.0
+
+COPY ./start-session.sh /usr/local/bin/start-session
+
+CMD ["/bin/bash"]
+
+ENTRYPOINT ["/usr/local/bin/start-session"]
