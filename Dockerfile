@@ -1,13 +1,13 @@
-FROM alpine:3.2
+FROM ubuntu:15.10
 MAINTAINER Stephen Olesen <slepp@slepp.ca>
 
-RUN apk --update add openjdk7-jre xvfb curl
-#apt-get update \
-#	&& apt-get install \
-#		openjdk-7-jre \
-#		xvfb \
-#	&& apt-get clean \
-#	&& rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+	&& apt-get install -y \
+		curl \
+		openjdk-7-jre \
+		xvfb \
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/local/share
 RUN curl -SL https://downloads.arduino.cc/arduino-1.6.7-linux64.tar.xz \
