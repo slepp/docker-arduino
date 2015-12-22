@@ -9,7 +9,7 @@ RUN apt-get update \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV ARDUINO_IDE_VERSION=1.6.7
+ENV ARDUINO_IDE_VERSION 1.6.7
 RUN (wget -q -O- https://downloads.arduino.cc/arduino-${ARDUINO_IDE_VERSION}-linux64.tar.xz \
 	| tar xJC /usr/local/share \
 	&& ln -s arduino-${ARDUINO_IDE_VERSION} arduino \
