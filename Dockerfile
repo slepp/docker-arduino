@@ -12,7 +12,7 @@ RUN apt-get update \
 ENV ARDUINO_IDE_VERSION 1.6.7
 RUN (wget -q -O- https://downloads.arduino.cc/arduino-${ARDUINO_IDE_VERSION}-linux64.tar.xz \
 	| tar xJC /usr/local/share \
-	&& ln -s arduino-${ARDUINO_IDE_VERSION} arduino \
+	&& ln -s /usr/local/share/arduino-${ARDUINO_IDE_VERSION} /usr/local/share/arduino \
 	&& ln -s /usr/local/share/arduino-${ARDUINO_IDE_VERSION}/arduino /usr/local/bin/arduino)
 
 COPY ./start-xvfb.sh /usr/local/bin/start-xvfb
