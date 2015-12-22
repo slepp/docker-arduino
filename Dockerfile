@@ -10,10 +10,10 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/local/share
-RUN curl -SL https://downloads.arduino.cc/arduino-1.6.7-linux64.tar.xz \
+RUN curl -SL https://downloads.arduino.cc/arduino-1.6.5-linux64.tar.xz \
 	| tar xJ \
-	&& ln -s arduino-1.6.7 arduino \
-	&& ln -s /usr/local/share/arduino-1.6.7/arduino /usr/local/bin/arduino
+	&& ln -s arduino-1.6.5 arduino \
+	&& ln -s /usr/local/share/arduino-1.6.5/arduino /usr/local/bin/arduino
 
 COPY ./start-xvfb.sh /usr/local/bin/start-xvfb
 
