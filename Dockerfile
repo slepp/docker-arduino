@@ -3,17 +3,17 @@ MAINTAINER Stephen Olesen <slepp@slepp.ca>
 
 RUN apt-get update \
 	&& apt-get install -y \
-		curl \
+		wget \
 		openjdk-7-jre \
 		xvfb \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
-WORKDIR /usr/local/share
-RUN curl -SL https://downloads.arduino.cc/arduino-1.6.7-linux64.tar.xz \
-	| tar xJ \
-	&& ln -s arduino-1.6.7 arduino \
-	&& ln -s /usr/local/share/arduino-1.6.7/arduino /usr/local/bin/arduino
+ENV ARDUINO_IDE_VERSION=1.6.5
+RUN (wget -q -O- https://downloads.arduino.cc/arduino-${ARDUINO_IDE_VERSION}-linux64.tar.xz \
+	| tar xJC /usr/local/share \
+	&& ln -s arduino-${ARDUINO_IDE_VERSION} arduino \
+	&& ln -s /usr/local/share/arduino-${ARDUINO_IDE_VERSION}/arduino /usr/local/bin/arduino)
 
 COPY ./start-xvfb.sh /usr/local/bin/start-xvfb
 
